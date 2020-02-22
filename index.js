@@ -20,6 +20,9 @@ function checkUserExist(username, password) {
     }
     return false;
 }
+app.get('/', function (req, res) {
+    res.status(200).send('Hello World');
+});
 
 app.post('/login', function (req, res) {
     console.log('user: ', req.body.user);
