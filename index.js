@@ -48,7 +48,7 @@ app.post('/login', function (req, res) {
     //}
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
     //var fs = require('fs')
    // var content = fs.readFileSync('userpass.txt', 'utf8');
     // console.log(content);
