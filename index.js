@@ -14,7 +14,16 @@ app.use(bodyParser.json())
 
 function Registration(username, password) {
 
-    require('fs').appendFileSync("userpass.txt", username + ";"+ password +"\n");
+    require('fs').appendFileSync("userpass.txt", username + ";" + password + "\n");
+
+    array = [];
+    require('fs').readFileSync('userpass.txt', 'utf-8').split(/\r?\n/).forEach(function (line) {
+        array.push({
+            username: line.split(';')[0],
+            password: line.split(';')[1]
+        });
+        //console.log(array);
+    })
 }
 
 function checkUserExist(username, password) {
