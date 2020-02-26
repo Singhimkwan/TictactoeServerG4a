@@ -28,7 +28,19 @@ app.use(bodyParser.json())
 
 function Registration(username, password) {
 
+    for (var i = 0; i < array.length; i++) {
 
+
+
+        if (array[i].username == username ) {
+
+            return false;
+
+        }
+
+    }
+
+    
 
     require('fs').appendFileSync("userpass.txt", username + ";" + password + "\n");
 
@@ -49,6 +61,7 @@ function Registration(username, password) {
         //console.log(array);
 
     })
+    return true;
 
 }
 
@@ -168,11 +181,28 @@ app.post('/login', function (req, res) {
 
 app.post('/Registation', function (req, res) {
 
+
+
     console.log('user: ', req.body.user);
 
-    Registration(req.body.user, req.body.password);
+   
 
-    res.status(200).send('Registration OK');
+    if (Registration(req.body.user, req.body.password)) {
+
+        
+
+        res.status(200).send('Registration OK');
+
+
+
+    } else {
+
+        //login failed
+
+        res.status(400).send('Registration Failed, User name already exist');
+
+    }
+ 
 
 })
 
