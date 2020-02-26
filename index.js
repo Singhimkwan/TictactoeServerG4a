@@ -65,7 +65,17 @@ function Registration(username, password) {
 
 }
 
+function Checkinfosize() {
+    var fs = require('fs');
+    var stats = fs.statSync("userinfo.txt");
+    if (stats.size > 150) {
+        const fs = require('fs')
+        fs.truncate('userinfo.txt', 0, function () { console.log('clearinfo') })
 
+
+    } else;
+      
+}
 
 function checkUserExist(username, password) {
 
@@ -89,12 +99,11 @@ function writeTextFile() {
 
     //for(var i=0; i< array.length;i++)
 
-    //require('fs').writeFileSync("userinfo.txt", username + ";" + new Date(localeTime).toISOString().replace(/T/, ' ').replace(/\..+/, ''))
-
+   
 
 
     require('fs').appendFileSync("userinfo.txt", username + ";" + new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }) + "\n")
-
+  
 }
 
 
@@ -111,7 +120,7 @@ app.get('/', function (req, res) {
 
 app.get('/status', function (req, res) {
 
-
+    Checkinfosize();
 
     var content = "";
 
@@ -200,6 +209,7 @@ app.post('/Registation', function (req, res) {
         //login failed
 
         res.status(400).send('Registration Failed, User name already exist');
+        res.status(400).send('Registration Failed, User name already exist');
 
     }
  
@@ -243,5 +253,8 @@ app.listen(process.env.PORT || 3000, function () {
     //}
 
     console.log('Example app listening on port 3000!');
+    var fs = require('fs');
+    var stats = fs.statSync("userinfo.txt");
+    console.log('userinfosize File Size in Bytes:- ' + stats.size);
 
 });
