@@ -201,15 +201,15 @@ app.post('/Registation', function (req, res) {
         
 
         res.status(200).send('Registration OK');
-
+        console.log('Registration OK');
 
 
     } else {
 
-        //login failed
+
 
         res.status(400).send('Registration Failed, User name already exist');
-        res.status(400).send('Registration Failed, User name already exist');
+        console.log('Registration Fail');
 
     }
  
