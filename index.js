@@ -126,10 +126,10 @@ io.on('connection', function (socket) {
                 socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 4);
                 console.log(socket.id + 'is user2socket');
                 user2socket = socket.id;
-                socket.emit('messeger', 2);
+                socket.to(user1socket).emit('messeger', 2);
                 
                 // 2 = game start
-                console.log("user2 first");
+                console.log("user1 first");
                 //field.push({
 
                 //    username: line.split(';')[0],
@@ -166,7 +166,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('move', function (button, username, mark) {
-        if (mark == "X") {
+        if (mark == "O") {
             mark = 1;
         } else {
             mark = 0;
@@ -184,15 +184,15 @@ io.on('connection', function (socket) {
                 console.log(user2socket, "is user 2 id");
                 console.log("change move to user2");
                 //Player1Score = Player1Score + button;
-                if (button == 1) field[0][0] = "X";
-                else if (button == 2) field[0][1] = "X";
-                else if (button == 4) field[0][2] = "X";
-                else if (button == 8) field[1][0] = "X";
-                else if (button == 16) field[1][1] = "X";
-                else if (button == 32) field[1][2] = "X";
-                else if (button == 64) field[2][0] = "X";
-                else if (button == 128) field[2][1] = "X";
-                else if (button == 256) field[2][2] = "X";
+                if (button == 1) field[0][0] = "O";
+                else if (button == 2) field[0][1] = "O";
+                else if (button == 4) field[0][2] = "O";
+                else if (button == 8) field[1][0] = "O";
+                else if (button == 16) field[1][1] = "O";
+                else if (button == 32) field[1][2] = "O";
+                else if (button == 64) field[2][0] = "O";
+                else if (button == 128) field[2][1] = "O";
+                else if (button == 256) field[2][2] = "O";
                 console.log("Player1Score:", Player1Score);
                 if (CheckWin()) {
                     console.log("Player1 Win");
@@ -218,15 +218,15 @@ io.on('connection', function (socket) {
                 console.log(user1socket, "is user 1 id");
                 //Player2Score = Player2Score + button;
 
-                if (button == 1) field[0][0] = "O";
-                else if (button == 2) field[0][1] = "O";
-                else if (button == 4) field[0][2] = "O";
-                else if (button == 8) field[1][0] = "O";
-                else if (button == 16) field[1][1] = "O";
-                else if (button == 32) field[1][2] = "O";
-                else if (button == 64) field[2][0] = "O";
-                else if (button == 128) field[2][1] = "O";
-                else if (button == 256) field[2][2] = "O";
+                if (button == 1) field[0][0] = "X";
+                else if (button == 2) field[0][1] = "X";
+                else if (button == 4) field[0][2] = "X";
+                else if (button == 8) field[1][0] = "X";
+                else if (button == 16) field[1][1] = "X";
+                else if (button == 32) field[1][2] = "X";
+                else if (button == 64) field[2][0] = "X";
+                else if (button == 128) field[2][1] = "X";
+                else if (button == 256) field[2][2] = "X";
                 console.log("Player2Score:", Player2Score);
                 if (CheckWin()) {
                     console.log("Player2 Win");
@@ -299,78 +299,78 @@ io.on('connection', function (socket) {
                 
                
                     
-                if (field[0][0] == "X") {
+                if (field[0][0] == "O") {
                     button = 1;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 }
-                if (field[0][0] == "O") {
+                if (field[0][0] == "X") {
                     button = 1;
                     mark = 0;
                     socket.emit('boardstatus', button, mark)
                 }
-                if (field[0][1] == "X") {
+                if (field[0][1] == "O") {
                     button = 2;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[0][1] == "O") {
+                } if (field[0][1] == "X") {
                     button = 2;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 }
-                if (field[0][2] == "X") {
+                if (field[0][2] == "O") {
                     button = 4;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[0][2] == "O") {
+                } if (field[0][2] == "X") {
                     button = 4;
-                    mark = 1;
-                    socket.emit('boardstatus', button, mark)
-                } if (field[1][0] == "X") {
-                    button = 8;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][0] == "O") {
                     button = 8;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[1][1] == "X") {
-                    button = 16;
+                } if (field[1][0] == "X") {
+                    button = 8;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][1] == "O") {
                     button = 16;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[1][2] == "X") {
-                    button = 32;
+                } if (field[1][1] == "X") {
+                    button = 16;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][2] == "O") {
                     button = 32;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[2][0] == "X") {
-                    button = 64;
+                } if (field[1][2] == "X") {
+                    button = 32;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][0] == "O") {
                     button = 64;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[2][1] == "X") {
-                    button = 128;
+                } if (field[2][0] == "X") {
+                    button = 64;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][1] == "O") {
                     button = 128;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
-                } if (field[2][2] == "X") {
-                    button = 256;
+                } if (field[2][1] == "X") {
+                    button = 128;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][2] == "O") {
+                    button = 256;
+                    mark = 1;
+                    socket.emit('boardstatus', button, mark)
+                } if (field[2][2] == "X") {
                     button = 256;
                     mark = 1;
                     socket.emit('boardstatus', button, mark)
