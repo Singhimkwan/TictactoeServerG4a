@@ -27,7 +27,7 @@ var field = [["",""],["",""],["",""]];
 var username
 
 
-server.listen(process.env.PORT || 3001);
+server.listen(process.env.PORT);
 
 //function handler(req, res) {
 //    console.log(__dirname);
@@ -633,7 +633,7 @@ app.post('/Registation', function (req, res) {
 
 
 
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT, function () {
 
     //var fs = require('fs')
 
