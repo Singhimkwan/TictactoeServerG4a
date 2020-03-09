@@ -12,8 +12,8 @@ var user2socket;
 
 var bodyParser = require('body-parser')
 
-var fs = require('fs'),
-
+var fs = require('fs');
+var stats = fs.statSync("userinfo.txt");
     readline = require('readline');;
 
 var Player1Score=0;
@@ -27,7 +27,13 @@ var field = [["",""],["",""],["",""]];
 var username
 
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT, function () {
+    console.log('Example app listening on port 3000!');
+  
+    
+    console.log('userinfosize File Size in Bytes:- ' + stats.size);
+});
+
 
 //function handler(req, res) {
 //    console.log(__dirname);
@@ -631,47 +637,44 @@ app.post('/Registation', function (req, res) {
 
 })
 
+require('fs').readFileSync('userpass.txt', 'utf-8').split(/\r?\n/).forEach(function (line) {
 
+    array.push({
 
-app.listen(process.env.PORT, function () {
+        username: line.split(';')[0],
 
-    //var fs = require('fs')
+        password: line.split(';')[1]
 
-    // var content = fs.readFileSync('userpass.txt', 'utf8');
+    });
 
-    // console.log(content);
+    //console.log(array);
 
-
-
-    require('fs').readFileSync('userpass.txt', 'utf-8').split(/\r?\n/).forEach(function (line) {
-
-        array.push({
-
-            username: line.split(';')[0],
-
-            password: line.split(';')[1]
-
-        });
-
-        //console.log(array);
-
-    })
+})
 
 
 
-    //array = fs.readFileSync('userpass.txt').toString().split(";");
+//array = fs.readFileSync('userpass.txt').toString().split(";");
 
-    //for (i in array) {
+//for (i in array) {
 
-    //    console.log(array[0]);
+//    console.log(array[0]);
 
-    //}
-
-    console.log('Example app listening on port 3000!');
-    var fs = require('fs');
-    var stats = fs.statSync("userinfo.txt");
-    console.log('userinfosize File Size in Bytes:- ' + stats.size);
+//}
 
 
 
-});
+//app.listen(process.env.PORT, function () {
+
+//    //var fs = require('fs')
+
+//    // var content = fs.readFileSync('userpass.txt', 'utf8');
+
+//    // console.log(content);
+
+
+
+
+
+
+
+//});
