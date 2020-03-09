@@ -126,9 +126,9 @@ io.on('connection', function (socket) {
                 socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 4);
                 console.log(socket.id + 'is user2socket');
                 user2socket = socket.id;
-                socket.to(user1socket).emit('messeger', 2);
+                socket.to(user2socket).emit('messeger', 2);
                 // 2 = game start
-                console.log("user1 first");
+                console.log("user2 first");
                 //field.push({
 
                 //    username: line.split(';')[0],
@@ -155,7 +155,7 @@ io.on('connection', function (socket) {
                 if (roomid == room[i].roomid) {
                     socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 3);
                 }
-                console.log("Join fail");
+                console.log("Join fail go to spec");
             }
         }
 
