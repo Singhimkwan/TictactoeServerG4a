@@ -136,7 +136,7 @@ io.on('connection', function (socket) {
                 socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 4);
                 console.log(socket.id + 'is user2socket');
                 user2socket = socket.id;
-                socket.to(user1socket).emit('messeger', 2);
+                
                 
                 // 2 = game start
                 console.log("user1 first");
@@ -169,7 +169,9 @@ io.on('connection', function (socket) {
                 console.log("Join fail go to spec");
             }
         }
-
+        if (join == true)
+            console.log("send move to user1")
+            socket.to(user1socket).emit('messeger', 2);
 
         //roomid.push(roomid.length);
         //socket.emit('roomid', roomid[roomid.length - 1]);
@@ -222,6 +224,7 @@ io.on('connection', function (socket) {
                 }
                 roomcout++;
                 //change move
+                console.log("send move to user2")
                 socket.broadcast.to(user2socket).emit('messeger', 2);
             }
             else {
@@ -257,6 +260,7 @@ io.on('connection', function (socket) {
                     }
                 }
                 roomcout++
+                console.log("send move to user1")
                 socket.broadcast.to(user1socket).emit('messeger', 2);
             }
 
