@@ -1,7 +1,7 @@
-First is O
-tell user which turn
-alert turn
-Viewroom button
-viewer problem alert
-Room:ID
+First is O---
+tell user which turn--
+alert turn--
+Viewroom button---
+viewer problem alert--
+Room:ID--
 Destory socket

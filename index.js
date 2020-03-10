@@ -166,6 +166,21 @@ io.on('connection', function (socket) {
     });
 
     socket.on('move', function (button, username, mark) {
+
+        if (roomcout == 8) {
+            console.log("Draw and resetboard")
+            io.emit('messeger', 5);
+            //io.in(user1socket).emit('messeger', 1);
+            //io.in(user2socket).emit('messeger', 1);
+            roomcout = 0;
+
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    field[i][j] = (" ");
+                }
+            }
+
+        }
         if (mark == "O") {
             mark = 1;
         } else {
@@ -209,11 +224,13 @@ io.on('connection', function (socket) {
                     }
                 }
                 roomcout++;
+                //change move
+                socket.to(user2socket).emit('messeger', 2);
             }
             else {
                 mark = 0;
 
-                socket.to(user1socket).emit('messeger', 2);
+               
                 console.log("change move to user1");
                 console.log(user1socket, "is user 1 id");
                 //Player2Score = Player2Score + button;
@@ -243,20 +260,9 @@ io.on('connection', function (socket) {
                     }
                 }
                 roomcout++
+                socket.to(user1socket).emit('messeger', 2);
             }
-            if (roomcout == 9) {
-                console.log("Draw and resetboard")
-                io.emit('messeger', 5);
-                //io.in(user1socket).emit('messeger', 1);
-                //io.in(user2socket).emit('messeger', 1);
-                roomcout = 0;
 
-                for (var i = 0; i < 3; i++) {
-                    for (var j = 0; j < 3; j++) {
-                        field[i][j] = (" ");
-                    }
-                }
-            }
         console.log(field[0][0] + "|" + field[0][1] + "|" + field[0][2]);
         console.log(field[1][0] + "|" + field[1][1] + "|" + field[1][2]);
         console.log(field[2][0] + "|" + field[2][1] + "|" + field[2][2]);
