@@ -2,11 +2,11 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var room = [];
-var Game = function (roomId) {
-    this.roomId = roomId;
-    this.board = [];
-    this.moves = 0;
-}
+//var Game = function (roomId) {
+//    this.roomId = roomId;
+//    this.board = [];
+//    this.moves = 0;
+//}
 var user1socket;
 var user2socket;
 
@@ -20,17 +20,22 @@ var Player1Score=0;
 
 var Player2Score = 0;
 var roomcout = 0;
-
+var randomnumber = Math.floor(Math.random() * 8999) + 1000;
 var array = [];
 var field = [["",""],["",""],["",""]];
 
 var username
+for (var i = 0; i < room.length; i++) {
 
+    if (room[i].roomid == randomnumber) {
+        randomnumber = randomnumber
+    }
+}
 
 server.listen(process.env.PORT, function () {
     console.log('Example app listening on port 3000!');
-  
     
+    console.log('randomnumber= ' + randomnumber);
     console.log('userinfosize File Size in Bytes:- ' + stats.size);
 });
 
@@ -61,7 +66,9 @@ io.on('connection', function (socket) {
         console.log("2-" + data);
         socket.emit('news2', 'hello ricky god')
     });
-    
+    socket.on('disconnect', function (socket) {
+
+    });
     socket.on('createroom', function (username) {
         
         var create = true;
@@ -86,7 +93,8 @@ io.on('connection', function (socket) {
 
         if (create) {
             room.push({
-                roomid: room.length,
+                //roomid: room.length,
+                roomid: randomnumber,
 
                 username1: username,
 
