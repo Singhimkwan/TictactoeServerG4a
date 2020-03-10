@@ -15,7 +15,7 @@ var bodyParser = require('body-parser')
 var fs = require('fs');
 var stats = fs.statSync("userinfo.txt");
     readline = require('readline');;
-
+    var randomnumber;
 var Player1Score=0;
 
 var Player2Score = 0;
@@ -87,7 +87,7 @@ io.on('connection', function (socket) {
 
 
         if (create) {
-            var randomnumber = Math.floor(Math.random() * 8999) + 1000;
+            randomnumber = Math.floor(Math.random() * 8999) + 1000;
             for (var i = 0; i < room.length; i++) {
 
                 if (room[i].roomid == randomnumber) {
