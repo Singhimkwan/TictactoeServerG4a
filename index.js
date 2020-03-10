@@ -20,17 +20,12 @@ var Player1Score=0;
 
 var Player2Score = 0;
 var roomcout = 0;
-var randomnumber = Math.floor(Math.random() * 8999) + 1000;
+
 var array = [];
 var field = [["",""],["",""],["",""]];
 
 var username
-for (var i = 0; i < room.length; i++) {
 
-    if (room[i].roomid == randomnumber) {
-        randomnumber = randomnumber
-    }
-}
 
 server.listen(process.env.PORT, function () {
     console.log('Example app listening on port 3000!');
@@ -92,6 +87,13 @@ io.on('connection', function (socket) {
 
 
         if (create) {
+            var randomnumber = Math.floor(Math.random() * 8999) + 1000;
+            for (var i = 0; i < room.length; i++) {
+
+                if (room[i].roomid == randomnumber) {
+                    randomnumber = randomnumber
+                }
+            }
             room.push({
                 //roomid: room.length,
                 roomid: randomnumber,
@@ -175,20 +177,7 @@ io.on('connection', function (socket) {
 
     socket.on('move', function (button, username, mark) {
 
-        if (roomcout == 8) {
-            console.log("Draw and resetboard")
-            io.emit('messeger', 5);
-            //io.in(user1socket).emit('messeger', 1);
-            //io.in(user2socket).emit('messeger', 1);
-            roomcout = 0;
 
-            for (var i = 0; i < 3; i++) {
-                for (var j = 0; j < 3; j++) {
-                    field[i][j] = (" ");
-                }
-            }
-
-        }
         if (mark == "O") {
             mark = 1;
         } else {
@@ -203,7 +192,7 @@ io.on('connection', function (socket) {
             if (mark == 1) {
                 mark = 1
                 //change move
-                socket.to(user2socket).emit('messeger', 2);
+               // socket.to(user2socket).emit('messeger', 2);
                 console.log(user2socket, "is user 2 id");
                 console.log("change move to user2");
                 //Player1Score = Player1Score + button;
@@ -220,8 +209,8 @@ io.on('connection', function (socket) {
                 if (CheckWin()) {
                     console.log("Player1 Win");
                     io.emit('messeger', 1);
-                    io.in(user1socket).emit('messeger', 1);
-                    io.in(user2socket).emit('messeger', 1);
+                   // io.in(user1socket).emit('messeger', 1);
+                    //io.in(user2socket).emit('messeger', 1);
                     io.emit('messeger', 3);
                     roomcout = 0;
 
@@ -233,7 +222,7 @@ io.on('connection', function (socket) {
                 }
                 roomcout++;
                 //change move
-                socket.to(user2socket).emit('messeger', 2);
+                socket.broadcast.to(user2socket).emit('messeger', 2);
             }
             else {
                 mark = 0;
@@ -256,8 +245,8 @@ io.on('connection', function (socket) {
                 if (CheckWin()) {
                     console.log("Player2 Win");
                     io.emit('messeger', 1);
-                    io.in(user1socket).emit('messeger', 1);
-                    io.in(user2socket).emit('messeger', 1);
+                   // io.in(user1socket).emit('messeger', 1);
+                   // io.in(user2socket).emit('messeger', 1);
                     io.emit('messeger', 4);
                     roomcout = 0;
 
@@ -268,12 +257,26 @@ io.on('connection', function (socket) {
                     }
                 }
                 roomcout++
-                socket.to(user1socket).emit('messeger', 2);
+                socket.broadcast.to(user1socket).emit('messeger', 2);
             }
 
         console.log(field[0][0] + "|" + field[0][1] + "|" + field[0][2]);
         console.log(field[1][0] + "|" + field[1][1] + "|" + field[1][2]);
         console.log(field[2][0] + "|" + field[2][1] + "|" + field[2][2]);
+        if (roomcout == 9) {
+            console.log("Draw and resetboard")
+            io.emit('messeger', 5);
+            //io.in(user1socket).emit('messeger', 1);
+            //io.in(user2socket).emit('messeger', 1);
+            roomcout = 0;
+
+            for (var i = 0; i < 3; i++) {
+                for (var j = 0; j < 3; j++) {
+                    field[i][j] = (" ");
+                }
+            }
+
+        }
         //1 = X 
         //0 = O
         //if (Player1Score == 7 || Player1Score == 56 || Player1Score == 448 || Player1Score == 73 || Player1Score == 146 || Player1Score == 292 || Player1Score == 273 || Player1Score == 84)
@@ -400,10 +403,10 @@ io.on('connection', function (socket) {
     socket.on('messeger', function (reset) {
         if (reset == 1) {
             io.emit('messeger', 1);
-            io.in(user1socket).emit('messeger', 1);
+           // io.in(user1socket).emit('messeger', 1);
             io.in(user1socket).emit('messeger', 2);
-            io.in(user2socket).emit('messeger', 3);
-            io.in(user2socket).emit('messeger', 1);
+           // io.in(user2socket).emit('messeger', 3);
+           // io.in(user2socket).emit('messeger', 1);
             roomcout = 0;
 
             for (var i = 0; i < 3; i++) {
