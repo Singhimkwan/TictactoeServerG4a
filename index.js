@@ -52,14 +52,14 @@ server.listen(process.env.PORT, function () {
 io.on('connection', function (socket) {
     console.log("connect");
     console.log(socket.id)
-    socket.emit('news', { hello: 'world' });
+    io.emit('news', { hello: 'world' });
     socket.on('my other event', function (data) {
         console.log("1-" + data);
     });
     socket.on('my other event2', function (data) {
         console.log();
         console.log("2-" + data);
-        socket.emit('news2', 'hello ricky god')
+        io.emit('news2', 'hello ricky god')
     });
     socket.on('disconnect', function (socket) {
 
@@ -104,7 +104,7 @@ io.on('connection', function (socket) {
 
             });
 
-            socket.emit('roomid', room[room.length - 1].roomid, room[room.length - 1].username1, room[room.length - 1].username2, 1);
+            io.emit('roomid', room[room.length - 1].roomid, room[room.length - 1].username1, room[room.length - 1].username2, 1);
 
             console.log(room[room.length - 1].roomid + "" + room[room.length - 1].username1 + "" + room[room.length - 1].username2);
 
@@ -112,10 +112,10 @@ io.on('connection', function (socket) {
             user1socket = socket.id;
         }
         else {
-            socket.emit('roomid', id, username1, username2, 0);
+            io.emit('roomid', id, username1, username2, 0);
         }
         //roomid = room[room.length - 1].username1;
-        //socket.emit("roomid", roomid);
+        //io.emit("roomid", roomid);
     });
     socket.on('joinroom', function (roomid, username2) {
         console.log("try to join room");
@@ -133,7 +133,7 @@ io.on('connection', function (socket) {
 
                 join = true;
                 console.log(room[i].roomid, room[i].username1, room[i].username2);
-                socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 4);
+                io.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 4);
                 console.log(socket.id + 'is user2socket');
                 user2socket = socket.id;
                 
@@ -164,7 +164,7 @@ io.on('connection', function (socket) {
 
 
                 if (roomid == room[i].roomid) {
-                    socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 3);
+                    io.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 3);
                 }
                 console.log("Join fail go to spec");
             }
@@ -174,7 +174,7 @@ io.on('connection', function (socket) {
             socket.to(user1socket).emit('messeger', 2);
 
         //roomid.push(roomid.length);
-        //socket.emit('roomid', roomid[roomid.length - 1]);
+        //io.emit('roomid', roomid[roomid.length - 1]);
     });
 
     socket.on('move', function (button, username, mark) {
@@ -323,78 +323,78 @@ io.on('connection', function (socket) {
                 if (field[0][0] == "O") {
                     button = 1;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 }
                 if (field[0][0] == "X") {
                     button = 1;
                     mark = 0;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 }
                 if (field[0][1] == "O") {
                     button = 2;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[0][1] == "X") {
                     button = 2;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 }
                 if (field[0][2] == "O") {
                     button = 4;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[0][2] == "X") {
                     button = 4;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][0] == "O") {
                     button = 8;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][0] == "X") {
                     button = 8;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][1] == "O") {
                     button = 16;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][1] == "X") {
                     button = 16;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][2] == "O") {
                     button = 32;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[1][2] == "X") {
                     button = 32;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][0] == "O") {
                     button = 64;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][0] == "X") {
                     button = 64;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][1] == "O") {
                     button = 128;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][1] == "X") {
                     button = 128;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][2] == "O") {
                     button = 256;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 } if (field[2][2] == "X") {
                     button = 256;
                     mark = 1;
-                    socket.emit('boardstatus', button, mark)
+                    io.emit('boardstatus', button, mark)
                 }
 
 
