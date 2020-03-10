@@ -336,7 +336,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[0][1] == "X") {
                     button = 2;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 }
                 if (field[0][2] == "O") {
@@ -345,7 +345,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[0][2] == "X") {
                     button = 4;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][0] == "O") {
                     button = 8;
@@ -353,7 +353,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][0] == "X") {
                     button = 8;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][1] == "O") {
                     button = 16;
@@ -361,7 +361,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][1] == "X") {
                     button = 16;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][2] == "O") {
                     button = 32;
@@ -369,7 +369,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[1][2] == "X") {
                     button = 32;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][0] == "O") {
                     button = 64;
@@ -377,7 +377,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][0] == "X") {
                     button = 64;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][1] == "O") {
                     button = 128;
@@ -385,7 +385,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][1] == "X") {
                     button = 128;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][2] == "O") {
                     button = 256;
@@ -393,7 +393,7 @@ io.on('connection', function (socket) {
                     socket.emit('boardstatus', button, mark)
                 } if (field[2][2] == "X") {
                     button = 256;
-                    mark = 1;
+                    mark = 0;
                     socket.emit('boardstatus', button, mark)
                 }
 
