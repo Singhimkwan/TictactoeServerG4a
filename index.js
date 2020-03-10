@@ -246,9 +246,9 @@ io.on('connection', function (socket) {
             }
             if (roomcout == 9) {
                 console.log("Draw and resetboard")
-                io.emit('messeger', 1);
-                io.in(user1socket).emit('messeger', 1);
-                io.in(user2socket).emit('messeger', 1);
+                io.emit('messeger', 5);
+                //io.in(user1socket).emit('messeger', 1);
+                //io.in(user2socket).emit('messeger', 1);
                 roomcout = 0;
 
                 for (var i = 0; i < 3; i++) {
