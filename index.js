@@ -70,7 +70,7 @@ io.on('connection', function (socket) {
                 }
 
                
-                room[i].roomid = 1;
+                
                 room[i].username1 = "";
                 room[i].username2 = "";
 
