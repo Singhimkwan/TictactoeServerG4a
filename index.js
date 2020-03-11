@@ -56,13 +56,22 @@ io.on('connection', function (socket) {
     socket.on('my other event', function (data) {
         console.log("1-" + data);
     });
-    socket.on('my other event2', function (data) {
-        console.log();
-        console.log("2-" + data);
-        socket.emit('news2', 'hello ricky god')
-    });
-    socket.on('disconnect', function (socket) {
 
+    socket.on('disconnect', function (disconnectname) {
+        console.log("requested by", disconnectname);
+        for (var i = 0; i < room.length; i++) {
+            if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
+                console.log("disconnect and reset board");
+                io.emit('messeger', 6);
+                for (var i = 0; i < 3; i++) {
+                    for (var j = 0; j < 3; j++) {
+                        field[i][j] = (" ");
+                    }
+                }
+            }
+        }
+         
+        
     });
     socket.on('createroom', function (username) {
         
