@@ -195,9 +195,11 @@ io.on('connection', function (socket) {
                 console.log("Join fail go to spec");
             }
         }
-        if (join == true)
+        if (join == true) {
             console.log("send move to user1")
             socket.to(user1socket).emit('messeger', 2);
+        }
+           
 
         //roomid.push(roomid.length);
         //socket.emit('roomid', roomid[roomid.length - 1]);
