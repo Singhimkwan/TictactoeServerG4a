@@ -73,7 +73,7 @@ io.on('connection', function (socket) {
 
                     room.push({
                         //roomid: room.length,
-                        roomid: "",
+                        roomid: 100000,
 
                         username1: "",
 
