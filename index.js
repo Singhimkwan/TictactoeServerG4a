@@ -61,8 +61,16 @@ io.on('connection', function (socket) {
         console.log("requested by", disconnectname);
         for (var i = 0; i < room.length; i++) {
             if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
+                defno++;
+                room[i].roomid = defno;
+                room[i].username1 = "";
+                room[i].username2 = "";
+
+
+                console.log("clean room array");
                 console.log("disconnect and reset board");
                 io.emit('messeger', 6);
+                console.log("disconnect and reset board");
                 for (var i = 0; i < 3; i++) {
                     for (var j = 0; j < 3; j++) {
                         field[i][j] = (" ");
@@ -71,10 +79,7 @@ io.on('connection', function (socket) {
 
                
                 
-                room[i].username1 = "";
-                room[i].username2 = "";
-
-                console.log("clean room array");
+                
                 //for (var i = 0; i < room.length; i++) {
                 //    if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
                        
