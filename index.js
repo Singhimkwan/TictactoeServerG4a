@@ -193,6 +193,7 @@ io.on('connection', function (socket) {
                     socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 3);
                 }
                 console.log("Join fail go to spec");
+                socket.emit('joinstatus', 0, "", "", 5);
             }
         }
         if (join == true) {
