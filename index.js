@@ -23,7 +23,7 @@ var roomcout = 0;
 
 var array = [];
 var field = [["",""],["",""],["",""]];
-var defno = 404;
+var defno = 100;
 var username
 
 
@@ -68,19 +68,30 @@ io.on('connection', function (socket) {
                         field[i][j] = (" ");
                     }
                 }
+
+                defno++;
+                room[i].roomid = defno;
+                room[i].username1 = "";
+                room[i].username2 = "";
+
                 console.log("clean room array");
-                for (var i = 0; i < room.length; i++) {
+                //for (var i = 0; i < room.length; i++) {
+                //    if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
+                       
+                //    }
+                //}
+                //for (var i = 0; i < room.length; i++) {
 
-                    room.push({
-                        //roomid: room.length,
-                        roomid: room.length,
+                //    room.push({
+                //        //roomid: room.length,
+                //        roomid: room.length,
 
-                        username1: "",
+                //        username1: "",
 
-                        username2: ""
+                //        username2: ""
 
-                    });
-                }
+                //    });
+                //}
             }
         }
     })
@@ -90,7 +101,7 @@ io.on('connection', function (socket) {
         
         var create = true;
         var id, username1, username2;
-        console.log("createroom" + username);
+        console.log("createroom  " + username);
 
         for (var i = 0; i < room.length; i++) {
 
@@ -101,6 +112,7 @@ io.on('connection', function (socket) {
                 username1 = room[i].username1;
                 username2 = room[i].username2;
                 create = false;
+                console.log("createroom fail   " + username);
                 break;
             }
 
