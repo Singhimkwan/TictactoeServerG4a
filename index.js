@@ -190,10 +190,14 @@ io.on('connection', function (socket) {
 
 
                 if (roomid == room[i].roomid) {
+                    console.log("Join fail go to spec");
                     socket.emit('joinstatus', room[i].roomid, room[i].username1, room[i].username2, 3);
+                } else {
+                    console.log("no room number");
+                    socket.emit('joinstatus', 0, "", "", 5);
                 }
-                console.log("Join fail go to spec");
-                socket.emit('joinstatus', 0, "", "", 5);
+               
+                
             }
         }
         if (join == true) {
