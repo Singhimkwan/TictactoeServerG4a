@@ -69,18 +69,18 @@ io.on('connection', function (socket) {
                     }
                 }
                 console.log("clean room array");
-                for (var i = 0; i < room.length; i++) {
+                //for (var i = 0; i < room.length; i++) {
 
-                    room.push({
-                        //roomid: room.length,
-                        roomid: 100000,
+                //    room.push({
+                //        //roomid: room.length,
+                //        roomid: 100000,
 
-                        username1: "",
+                //        username1: "",
 
-                        username2: ""
+                //        username2: ""
 
-                    });
-                }
+                //    });
+                //}
             }
         }
     })
