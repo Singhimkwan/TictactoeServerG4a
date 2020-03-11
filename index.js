@@ -69,8 +69,8 @@ io.on('connection', function (socket) {
                     }
                 }
 
-                defno++;
-                room[i].roomid = defno;
+               
+                room[i].roomid = 1;
                 room[i].username1 = "";
                 room[i].username2 = "";
 
