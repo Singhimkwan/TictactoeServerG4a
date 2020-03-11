@@ -80,13 +80,12 @@ io.on('connection', function (socket) {
                         username2: ""
 
                     });
-                    }
                 }
             }
         }
+    })
          
-        
-    });
+   
     socket.on('createroom', function (username) {
         
         var create = true;
