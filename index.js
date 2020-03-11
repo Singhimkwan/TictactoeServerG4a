@@ -57,7 +57,7 @@ io.on('connection', function (socket) {
         console.log("1-" + data);
     });
 
-    socket.on('disconnect', function (disconnectname) {
+    socket.on('dicon', function (disconnectname) {
         console.log("requested by", disconnectname);
         for (var i = 0; i < room.length; i++) {
             if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
