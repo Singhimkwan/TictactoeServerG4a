@@ -58,9 +58,11 @@ io.on('connection', function (socket) {
     });
 
     socket.on('dicon', function (disconnectname) {
+        var roomuser =false
         console.log("requested by", disconnectname);
         for (var i = 0; i < room.length; i++) {
             if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
+                roomuser = true;
                 defno++;
                 room[i].roomid = defno;
                 room[i].username1 = "";
@@ -68,8 +70,8 @@ io.on('connection', function (socket) {
 
 
                 console.log("clean room array");
-                console.log("disconnect and reset board");
-                io.emit('messeger', 6);
+                
+                
                 console.log("disconnect and reset board");
                 for (var i = 0; i < 3; i++) {
                     for (var j = 0; j < 3; j++) {
@@ -77,28 +79,13 @@ io.on('connection', function (socket) {
                     }
                 }
 
-               
-                
-                
-                //for (var i = 0; i < room.length; i++) {
-                //    if (room[i].username1 == disconnectname || room[i].username2 == disconnectname) {
-                       
-                //    }
-                //}
-                //for (var i = 0; i < room.length; i++) {
 
-                //    room.push({
-                //        //roomid: room.length,
-                //        roomid: room.length,
-
-                //        username1: "",
-
-                //        username2: ""
-
-                //    });
-                //}
             }
         }
+        if (roomuser==true){
+            io.emit('messeger', 6);
+        }
+
     })
          
    
